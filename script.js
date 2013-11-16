@@ -17,6 +17,7 @@ $(document).ready(function(){
 		var game_loop;
 		var paused;
 		var snake_size;
+		var line_color
         //Lets create the snake now
         var snake_array; //an array of cells to make up the snake
         
@@ -28,6 +29,7 @@ $(document).ready(function(){
                 food_color = $("#food").val();
 				board_color = $("#canvas_color").val();
 				snake_size = $("#snake_size").val();
+				line_color = $("#line_color").val();
                 if (parseInt(w/cw/2)*2*cw != w)
                         throw "ERROR: Width must be an even number when divised by the cell width.";
                 if (parseInt(h/cw/2)*2*cw != h)
@@ -143,7 +145,7 @@ $(document).ready(function(){
         {
                 ctx.fillStyle = color;
                 ctx.fillRect(x*cw, y*cw, cw, cw);
-                ctx.strokeStyle = "white";
+                ctx.strokeStyle = line_color;
                 ctx.strokeRect(x*cw, y*cw, cw, cw);
         }
         
