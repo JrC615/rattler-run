@@ -13,7 +13,7 @@ $(document).ready(function(){
         var speed;
         var snake_color;
         var food_color;
-		
+		var board_color;
         //Lets create the snake now
         var snake_array; //an array of cells to make up the snake
         
@@ -23,7 +23,7 @@ $(document).ready(function(){
                 speed = $("#difficulty").val();
                 snake_color = $("#color").val();
                 food_color = $("#food").val();
-				
+				board_color = $("#canvas_color").val();
                 if (parseInt(w/cw/2)*2*cw != w)
                         throw "ERROR: Width must be an even number when divised by the cell width.";
                 if (parseInt(h/cw/2)*2*cw != h)
@@ -67,7 +67,7 @@ $(document).ready(function(){
         {
                 //To avoid the snake trail we need to paint the BG on every frame
                 //Lets paint the canvas now
-                ctx.fillStyle = "white";
+                ctx.fillStyle = board_color;
                 ctx.fillRect(0, 0, w, h);
                 ctx.strokeStyle = "black";
                 ctx.strokeRect(0, 0, w, h);
