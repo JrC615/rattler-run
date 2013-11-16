@@ -14,6 +14,9 @@ $(document).ready(function(){
         var snake_color;
         var food_color;
 		var board_color;
+		var game_loop;
+		var paused;
+		var snake_size;
         //Lets create the snake now
         var snake_array; //an array of cells to make up the snake
         
@@ -24,6 +27,7 @@ $(document).ready(function(){
                 snake_color = $("#color").val();
                 food_color = $("#food").val();
 				board_color = $("#canvas_color").val();
+				snake_size = $("#snake_size").val();
                 if (parseInt(w/cw/2)*2*cw != w)
                         throw "ERROR: Width must be an even number when divised by the cell width.";
                 if (parseInt(h/cw/2)*2*cw != h)
@@ -42,7 +46,7 @@ $(document).ready(function(){
         
         function create_snake()
         {
-                var length = 3; //Length of the snake
+                var length = snake_size; //Length of the snake
                 snake_array = []; //Empty array to start with
                 for(var i = length-1; i>=0; i--)
                 {
@@ -130,6 +134,8 @@ $(document).ready(function(){
                 var score_text = "Points: " + score;
                 document.title = 'Rattler Run - ' + score_text;
                 ctx.fillText(score_text, 5, h-5);
+				
+				//clearInterval(game_loop);
         }
         
         //Lets first create a generic function to paint cells
@@ -161,7 +167,21 @@ $(document).ready(function(){
                 else if(key == "87" && d != "down") d = "up"; // 
                 else if(key == "68" && d != "left") d = "right";
                 else if(key == "83" && d != "up") d = "down";
-                //The snake is now keyboard controllable
+                else if(key == "80")
+				{
+					if (paused)
+					{
+						paused = false;
+						game_loop = setInterval(paint, speed);
+					}
+					else
+					{
+						paused = true;
+						if(typeof game_loop != "undefined") clearInterval(game_loop);
+					}
+				}
+			
+				//The snake is now keyboard controllable
                 $("#canvas").focus();
         });
 });
