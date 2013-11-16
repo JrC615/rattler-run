@@ -17,7 +17,8 @@ $(document).ready(function(){
 		var game_loop;
 		var paused;
 		var snake_size;
-		var line_color
+		var line_color;
+		var head_snake;
         //Lets create the snake now
         var snake_array; //an array of cells to make up the snake
         
@@ -30,6 +31,7 @@ $(document).ready(function(){
 				board_color = $("#canvas_color").val();
 				snake_size = $("#snake_size").val();
 				line_color = $("#line_color").val();
+				head_snake = $("#head_snake").val();
                 if (parseInt(w/cw/2)*2*cw != w)
                         throw "ERROR: Width must be an even number when divised by the cell width.";
                 if (parseInt(h/cw/2)*2*cw != h)
@@ -75,7 +77,7 @@ $(document).ready(function(){
                 //Lets paint the canvas now
                 ctx.fillStyle = board_color;
                 ctx.fillRect(0, 0, w, h);
-                ctx.strokeStyle = "black";
+                ctx.strokeStyle = line_color;
                 ctx.strokeRect(0, 0, w, h);
                 
                 //The movement code for the snake to come here.
@@ -127,7 +129,15 @@ $(document).ready(function(){
                 {
                         var c = snake_array[i];
                         //Lets paint 10px wide cells
-                        paint_cell(c.x, c.y, snake_color);
+                        
+						if (i == 0)
+						{
+							paint_cell(c.x, c.y, head_snake);
+						}
+						else 
+						{
+							paint_cell(c.x, c.y, snake_color);
+						}
                 }
                 
                 //Lets paint the food
