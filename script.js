@@ -36,7 +36,7 @@ $(document).ready(function(){
                         throw "ERROR: Width must be an even number when divised by the cell width.";
                 if (parseInt(h/cw/2)*2*cw != h)
                         throw "ERROR: Height must be an even number when divised by the cell height.";
-                d = "right"; //default direction
+                d = "down"; //default direction
                 create_snake();
                 create_food(); //Now we can see the food particle
                 //finally lets display the score
