@@ -42,7 +42,7 @@ $(document).ready(function(){
         
         function create_snake()
         {
-                var length = 5; //Length of the snake
+                var length = 3; //Length of the snake
                 snake_array = []; //Empty array to start with
                 for(var i = length-1; i>=0; i--)
                 {
