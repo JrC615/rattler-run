@@ -12,7 +12,8 @@ $(document).ready(function(){
         var score;
         var speed;
         var snake_color;
-        
+        var food_color;
+		
         //Lets create the snake now
         var snake_array; //an array of cells to make up the snake
         
@@ -21,7 +22,8 @@ $(document).ready(function(){
                 cw = 10;
                 speed = $("#difficulty").val();
                 snake_color = $("#color").val();
-                
+                food_color = $("#food").val();
+				
                 if (parseInt(w/cw/2)*2*cw != w)
                         throw "ERROR: Width must be an even number when divised by the cell width.";
                 if (parseInt(h/cw/2)*2*cw != h)
@@ -123,7 +125,7 @@ $(document).ready(function(){
                 }
                 
                 //Lets paint the food
-                paint_cell(food.x, food.y, "red");
+                paint_cell(food.x, food.y, food_color);
                 //Lets paint the score
                 var score_text = "Points: " + score;
                 document.title = 'Rattler Run - ' + score_text;
